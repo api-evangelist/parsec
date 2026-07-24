@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: Parsec Teams App Rule Member API
+  version: v1
+  description: 'The Parsec for Teams API exposes everything a Parsec for Teams admin can do to an API application: inviting and managing team members and groups, provisioning and assigning team machines (computers), issuing time-limited guest access invites, managing application rules and relays, and reading the team audit log. Authentication is via an API key presented as an HTTP Bearer token. Every endpoint enforces a granular team permission (for example "View Team Members", "Delete Team Machine", "Access Audit Log").'
+  contact:
+    name: Parsec Support
+    url: https://support.parsec.app
+  termsOfService: https://parsec.app/terms
+servers:
+- url: https://api.parsec.app
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Member
+paths:
+  /v1/teams/{teamID}/members:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getTeamMembers
+      summary: Get Team Members
+      description: Get a paginated list of team members. The View Team Members permission is required to access this endpoint.
+      tags:
+      - Member
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A paginated list of team members.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /v1/teams/{teamID}/members/{userID}:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    - $ref: '#/components/parameters/userID'
+    get:
+      operationId: getTeamMember
+      summary: Get Team Member
+      description: Get a team member. The View Team Members permission is required.
+      tags:
+      - Member
+      responses:
+        '200':
+          description: The team member.
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: removeTeamMember
+      summary: Remove Team Member
+      description: Remove a team member. Team Computers assigned to the removed member will be unassigned on removal. The Remove Team Members permission is required.
+      tags:
+      - Member
+      responses:
+        '204':
+          description: Member removed.
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    Forbidden:
+      description: The API key's team role lacks the permission required for this endpoint.
+    Unauthorized:
+      description: Missing or invalid API key.
+    NotFound:
+      description: The requested resource was not found.
+  parameters:
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The team identifier (e.g. team_123abc).
+    userID:
+      name: userID
+      in: path
+      required: true
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+      description: Pagination offset.
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to return per page.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'A Parsec for Teams API key presented as an HTTP Bearer token: `Authorization: Bearer YOUR_API_KEY`. API keys are created and managed in the Parsec for Teams dashboard.'
+x-provenance:
+  generated: '2026-07-20'
+  method: searched
+  source: https://parsec.app/docs/teams-api
+  note: Faithfully reconstructed from Parsec's published Teams API reference (paths, methods, operation names, parameters, permission requirements and documented rate limits captured verbatim from the public docs). Request and response schema field detail is intentionally minimal where the docs did not publish it; nothing has been fabricated.

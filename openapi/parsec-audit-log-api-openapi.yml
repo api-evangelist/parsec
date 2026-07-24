@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Parsec Teams App Rule Audit Log API
+  version: v1
+  description: 'The Parsec for Teams API exposes everything a Parsec for Teams admin can do to an API application: inviting and managing team members and groups, provisioning and assigning team machines (computers), issuing time-limited guest access invites, managing application rules and relays, and reading the team audit log. Authentication is via an API key presented as an HTTP Bearer token. Every endpoint enforces a granular team permission (for example "View Team Members", "Delete Team Machine", "Access Audit Log").'
+  contact:
+    name: Parsec Support
+    url: https://support.parsec.app
+  termsOfService: https://parsec.app/terms
+servers:
+- url: https://api.parsec.app
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Audit Log
+paths:
+  /v1/teams/{teamID}/events:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getAuditLogEvents
+      summary: Get Audit Log Events
+      description: Get team audit log events. The Access Audit Log permission is required. Maximum 50 requests in a 5 minute window; blocked for 5 minutes if this quota is exceeded.
+      tags:
+      - Audit Log
+      parameters:
+      - $ref: '#/components/parameters/start_at'
+      - $ref: '#/components/parameters/end_at'
+      - name: user_id
+        in: query
+        schema:
+          type: string
+      - name: event_names
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/limit'
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      - name: after
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A page of audit log events.
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /v2/teams/{teamID}/events:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: listAuditLogEvents
+      summary: List Audit Log Events
+      description: List team audit log events (v2, cursor-paginated). The Access Audit Log permission is required. Maximum 50 requests in a 5 minute window; blocked for 5 minutes if this quota is exceeded. Supports gzip via the Accept-Encoding header.
+      tags:
+      - Audit Log
+      parameters:
+      - $ref: '#/components/parameters/start_at'
+      - $ref: '#/components/parameters/end_at'
+      - name: user_id
+        in: query
+        schema:
+          type: string
+      - name: event_names
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/limit'
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      - name: after
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A page of audit log events.
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    Forbidden:
+      description: The API key's team role lacks the permission required for this endpoint.
+    RateLimited:
+      description: Rate limit exceeded. Maximum 50 requests in a 5 minute window; blocked for 5 minutes when the quota is exceeded.
+  parameters:
+    start_at:
+      name: start_at
+      in: query
+      schema:
+        type: string
+        format: date-time
+      description: RFC 3339 start of the query window.
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The team identifier (e.g. team_123abc).
+    end_at:
+      name: end_at
+      in: query
+      schema:
+        type: string
+        format: date-time
+      description: RFC 3339 end of the query window.
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to return per page.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'A Parsec for Teams API key presented as an HTTP Bearer token: `Authorization: Bearer YOUR_API_KEY`. API keys are created and managed in the Parsec for Teams dashboard.'
+x-provenance:
+  generated: '2026-07-20'
+  method: searched
+  source: https://parsec.app/docs/teams-api
+  note: Faithfully reconstructed from Parsec's published Teams API reference (paths, methods, operation names, parameters, permission requirements and documented rate limits captured verbatim from the public docs). Request and response schema field detail is intentionally minimal where the docs did not publish it; nothing has been fabricated.

@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: Parsec Teams App Rule Guest Access Invite API
+  version: v1
+  description: 'The Parsec for Teams API exposes everything a Parsec for Teams admin can do to an API application: inviting and managing team members and groups, provisioning and assigning team machines (computers), issuing time-limited guest access invites, managing application rules and relays, and reading the team audit log. Authentication is via an API key presented as an HTTP Bearer token. Every endpoint enforces a granular team permission (for example "View Team Members", "Delete Team Machine", "Access Audit Log").'
+  contact:
+    name: Parsec Support
+    url: https://support.parsec.app
+  termsOfService: https://parsec.app/terms
+servers:
+- url: https://api.parsec.app
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Guest Access Invite
+paths:
+  /v1/teams/{teamID}/guest-access-invites:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getGuestAccessInvites
+      summary: Get Guest Access Invites
+      description: Get a paginated list of guest access invites. The View Guest Access Links permission is required.
+      tags:
+      - Guest Access Invite
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A paginated list of guest access invites.
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createGuestAccessInvite
+      summary: Create Guest Access Invite
+      description: Create a time-limited guest access invite.
+      tags:
+      - Guest Access Invite
+      responses:
+        '201':
+          description: Guest access invite created.
+  /v1/teams/{teamID}/guest-access-invites/{guestAccessInviteID}:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    - $ref: '#/components/parameters/guestAccessInviteID'
+    get:
+      operationId: getGuestAccessInvite
+      summary: Get Guest Access Invite
+      description: Get a team guest access invite. The View Guest Access Links permission is required.
+      tags:
+      - Guest Access Invite
+      responses:
+        '200':
+          description: The guest access invite.
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateGuestAccessInvite
+      summary: Update Guest Access Invite
+      description: Update a guest access invite.
+      tags:
+      - Guest Access Invite
+      responses:
+        '200':
+          description: Guest access invite updated.
+    delete:
+      operationId: cancelGuestAccessInvite
+      summary: Cancel Guest Access Invite
+      description: Cancel a guest access invite.
+      tags:
+      - Guest Access Invite
+      responses:
+        '204':
+          description: Guest access invite cancelled.
+  /v1/teams/{teamID}/guest-access-invites/{guestAccessInviteID}/guest:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    - $ref: '#/components/parameters/guestAccessInviteID'
+    delete:
+      operationId: kickGuestAccessGuest
+      summary: Kick Guest Access Guest
+      description: Disconnect the guest from the host machine immediately. If the invite is still within its valid window, the guest can reconnect.
+      tags:
+      - Guest Access Invite
+      responses:
+        '204':
+          description: Guest kicked.
+  /v1/teams/{teamID}/guest-access-invite-credits:
+    parameters:
+    - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getGuestAccessInviteCredits
+      summary: Get Guest Access Invite Credits
+      description: Get the team's remaining guest access invite credits.
+      tags:
+      - Guest Access Invite
+      responses:
+        '200':
+          description: Remaining guest access invite credits.
+components:
+  responses:
+    Forbidden:
+      description: The API key's team role lacks the permission required for this endpoint.
+    NotFound:
+      description: The requested resource was not found.
+  parameters:
+    guestAccessInviteID:
+      name: guestAccessInviteID
+      in: path
+      required: true
+      schema:
+        type: string
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The team identifier (e.g. team_123abc).
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+      description: Pagination offset.
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to return per page.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'A Parsec for Teams API key presented as an HTTP Bearer token: `Authorization: Bearer YOUR_API_KEY`. API keys are created and managed in the Parsec for Teams dashboard.'
+x-provenance:
+  generated: '2026-07-20'
+  method: searched
+  source: https://parsec.app/docs/teams-api
+  note: Faithfully reconstructed from Parsec's published Teams API reference (paths, methods, operation names, parameters, permission requirements and documented rate limits captured verbatim from the public docs). Request and response schema field detail is intentionally minimal where the docs did not publish it; nothing has been fabricated.
