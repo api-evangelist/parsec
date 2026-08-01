@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://parsec.app/docs/teams-api
+rate_limits:
+- scope: burst
+  limit_count: 50
+  window: 5m
+  penalty: blocked for 5 minutes when exceeded
+  applies_to:
+  - createTeamInvites
+  - resendTeamInvites
+  - getAuditLogEvents
+  - listAuditLogEvents
+  response_status: 429
+notes: >-
+  Parsec documents a 50-requests-per-5-minute quota on the invite and audit-log
+  endpoints; exceeding it blocks the caller for 5 minutes. No general
+  account-wide rate limit is published for the other Teams API endpoints.

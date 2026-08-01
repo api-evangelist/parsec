@@ -1,0 +1,63 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/parsec-teams-openapi.yml
+entities:
+- name: Team
+  id_field: teamID
+  notes: The top-level tenant; every resource is nested under /v1/teams/{teamID}.
+- name: TeamMember
+  id_field: user_id
+- name: TeamMemberInvite
+  id_field: email
+- name: TeamGroup
+  id_field: groupID
+- name: Machine
+  id_field: machineID
+- name: GuestAccessInvite
+  id_field: guestAccessInviteID
+- name: Guest
+- name: AppRule
+  id_field: appRuleID
+- name: Relay
+  id_field: relayID
+- name: Event
+  notes: Audit-log event.
+relationships:
+- from: Team
+  to: TeamMember
+  type: has_many
+  via: teamID
+- from: Team
+  to: TeamGroup
+  type: has_many
+  via: teamID
+- from: Team
+  to: Machine
+  type: has_many
+  via: teamID
+- from: TeamMember
+  to: TeamGroup
+  type: belongs_to
+  via: group_id
+- from: TeamGroup
+  to: TeamGroup
+  type: has_many
+  via: permitted-groups
+  notes: Groups grant connection permissions to other groups.
+- from: Machine
+  to: TeamMember
+  type: has_one
+  via: assignment
+  notes: A machine may be assigned to a member, group, or reservation.
+- from: Machine
+  to: AppRule
+  type: has_many
+  via: assign
+- from: GuestAccessInvite
+  to: Guest
+  type: has_one
+  via: guest
+- from: Team
+  to: Event
+  type: has_many
+  via: teamID

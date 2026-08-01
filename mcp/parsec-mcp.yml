@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/parsec-teams-openapi.yml
+notes: >-
+  No official hosted/remote Parsec MCP server was found. This is a candidate
+  tool list derived one-to-one from the Teams API operations, provided as a
+  starting point for an MCP wrapper.
+server:
+  name: parsec-teams
+  transport: http
+tools:
+- name: get_team_members
+  description: Get a paginated list of team members.
+  source_operation: openapi/parsec-teams-openapi.yml#getTeamMembers
+- name: get_team_member
+  description: Get a single team member.
+  source_operation: openapi/parsec-teams-openapi.yml#getTeamMember
+- name: remove_team_member
+  description: Remove a team member.
+  source_operation: openapi/parsec-teams-openapi.yml#removeTeamMember
+- name: create_team_invites
+  description: Create team member invites.
+  source_operation: openapi/parsec-teams-openapi.yml#createTeamInvites
+- name: get_team_groups
+  description: Get a paginated list of team groups.
+  source_operation: openapi/parsec-teams-openapi.yml#getTeamGroups
+- name: create_team_group
+  description: Create a team group.
+  source_operation: openapi/parsec-teams-openapi.yml#createTeamGroup
+- name: get_team_machines
+  description: Get a paginated list of team machines.
+  source_operation: openapi/parsec-teams-openapi.yml#getTeamMachines
+- name: set_team_machine_assignment
+  description: Set a team machine's assignment.
+  source_operation: openapi/parsec-teams-openapi.yml#setTeamMachineAssignment
+- name: create_guest_access_invite
+  description: Create a time-limited guest access invite.
+  source_operation: openapi/parsec-teams-openapi.yml#createGuestAccessInvite
+- name: list_audit_log_events
+  description: List team audit log events (v2, cursor-paginated).
+  source_operation: openapi/parsec-teams-openapi.yml#listAuditLogEvents

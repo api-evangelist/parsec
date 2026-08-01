@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://parsec.app/changelog
+versioning:
+  scheme: uri-path
+  current: v2
+  versions: [v1, v2]
+  docs: https://parsec.app/docs/teams-api
+status_page: https://status.parsec.app
+status_page_notes: >-
+  status.parsec.app redirects to Unity's status page (status.unity.com); Parsec
+  is a Unity company.
+deprecation:
+  policy_url: https://parsec.app/changelog
+  sunset_header: false
+  notes: >-
+    Deprecations are announced in the changelog and marked inline in the API
+    (operations flagged Deprecated). No RFC 8594 Sunset/Deprecation header
+    support is documented.
+deprecated_operations:
+- openapi/parsec-teams-openapi.yml#createTeamMachineAssignment

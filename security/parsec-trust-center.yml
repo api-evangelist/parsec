@@ -1,0 +1,14 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+url: https://parsec.app/security
+certifications:
+- SOC 2 Type 2
+notes: >-
+  Parsec states it is SOC 2 Type 2 certified. Connections use 128-bit AES-GCM
+  encryption for peer-to-peer traffic and DTLS for web clients, with a
+  peer-to-peer architecture that transfers data directly between users. As a
+  Unity company, corporate/legal governance is handled under Unity.
+evidence:
+- source: https://parsec.app/security
+  keywords: [soc 2 type 2, encryption, penetration testing]

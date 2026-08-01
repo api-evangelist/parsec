@@ -1,0 +1,690 @@
+openapi: 3.0.3
+x-provenance:
+  generated: '2026-07-20'
+  method: searched
+  source: https://parsec.app/docs/teams-api
+  note: >-
+    Faithfully reconstructed from Parsec's published Teams API reference
+    (paths, methods, operation names, parameters, permission requirements and
+    documented rate limits captured verbatim from the public docs). Request and
+    response schema field detail is intentionally minimal where the docs did not
+    publish it; nothing has been fabricated.
+info:
+  title: Parsec Teams API
+  version: 'v1'
+  description: >-
+    The Parsec for Teams API exposes everything a Parsec for Teams admin can do
+    to an API application: inviting and managing team members and groups,
+    provisioning and assigning team machines (computers), issuing time-limited
+    guest access invites, managing application rules and relays, and reading the
+    team audit log. Authentication is via an API key presented as an HTTP Bearer
+    token. Every endpoint enforces a granular team permission (for example
+    "View Team Members", "Delete Team Machine", "Access Audit Log").
+  contact:
+    name: Parsec Support
+    url: https://support.parsec.app
+  termsOfService: https://parsec.app/terms
+servers:
+  - url: https://api.parsec.app
+    description: Production
+tags:
+  - name: Member
+  - name: Member Invite
+  - name: Group
+  - name: Machine
+  - name: Guest Access Invite
+  - name: App Rule
+  - name: Relay
+  - name: Audit Log
+security:
+  - bearerAuth: []
+paths:
+  /v1/teams/{teamID}/members:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getTeamMembers
+      summary: Get Team Members
+      description: >-
+        Get a paginated list of team members. The View Team Members permission
+        is required to access this endpoint.
+      tags: [Member]
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A paginated list of team members.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/members/{userID}:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/userID'
+    get:
+      operationId: getTeamMember
+      summary: Get Team Member
+      description: Get a team member. The View Team Members permission is required.
+      tags: [Member]
+      responses:
+        '200': { description: The team member. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      operationId: removeTeamMember
+      summary: Remove Team Member
+      description: >-
+        Remove a team member. Team Computers assigned to the removed member will
+        be unassigned on removal. The Remove Team Members permission is required.
+      tags: [Member]
+      responses:
+        '204': { description: Member removed. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/member-invites:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getTeamInvites
+      summary: Get Team Invites
+      description: >-
+        Get a paginated list of team member invites. The View Team Invites
+        permission is required.
+      tags: [Member Invite]
+      responses:
+        '200': { description: A paginated list of member invites. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      operationId: createTeamInvites
+      summary: Create Team Invites
+      description: >-
+        Create team member invites. Maximum 50 requests in a 5 minute window;
+        blocked for 5 minutes if this quota is exceeded. The Create Team Invites
+        permission is required.
+      tags: [Member Invite]
+      responses:
+        '201': { description: Invites created. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+    put:
+      operationId: updateTeamInvites
+      summary: Update Team Invites
+      description: Update team member invites. The Manage Team Invites permission is required.
+      tags: [Member Invite]
+      responses:
+        '200': { description: Invites updated. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/cancel-member-invites:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    post:
+      operationId: cancelTeamInvites
+      summary: Cancel Team Invites
+      description: >-
+        Cancel outstanding team member invites. The Delete Team Invites
+        permission is required.
+      tags: [Member Invite]
+      responses:
+        '200': { description: Invites cancelled. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/resend-member-invites:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    post:
+      operationId: resendTeamInvites
+      summary: Resend Team Invites
+      description: >-
+        Resend team member invites. Maximum 50 requests in a 5 minute window;
+        blocked for 5 minutes if this quota is exceeded.
+      tags: [Member Invite]
+      responses:
+        '200': { description: Invites resent. }
+        '429': { $ref: '#/components/responses/RateLimited' }
+  /v1/teams/{teamID}/groups:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getTeamGroups
+      summary: Get Team Groups
+      description: >-
+        Get a paginated list of team groups. The View Groups permission is required.
+      tags: [Group]
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200': { description: A paginated list of team groups. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      operationId: createTeamGroup
+      summary: Create Team Group
+      description: Create a team group. The Create Team Group permission is required.
+      tags: [Group]
+      responses:
+        '201': { description: Group created. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/groups/{groupID}:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/groupID'
+    get:
+      operationId: getTeamGroup
+      summary: Get Team Group
+      description: Get a team group. The View Groups permission is required.
+      tags: [Group]
+      responses:
+        '200': { description: The team group. }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateTeamGroup
+      summary: Update Team Group
+      description: Update a team group.
+      tags: [Group]
+      responses:
+        '200': { description: Group updated. }
+    delete:
+      operationId: deleteTeamGroup
+      summary: Delete Team Group
+      description: >-
+        Delete a team group. The Delete Team Group permission is required.
+      tags: [Group]
+      responses:
+        '204': { description: Group deleted. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/groups/{groupID}/members:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/groupID'
+    get:
+      operationId: getTeamGroupMembers
+      summary: Get Team Group Members
+      description: List the members of a team group.
+      tags: [Group]
+      responses:
+        '200': { description: The group's members. }
+  /v1/teams/{teamID}/groups/{groupID}/add-members:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/groupID'
+    post:
+      operationId: assignTeamGroupMembers
+      summary: Assign Team Group Members
+      description: Assign members to a team group.
+      tags: [Group]
+      responses:
+        '200': { description: Members assigned. }
+  /v1/teams/{teamID}/groups/{groupID}/remove-members:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/groupID'
+    post:
+      operationId: removeTeamGroupMembers
+      summary: Remove Team Group Members
+      description: Remove members from a team group.
+      tags: [Group]
+      responses:
+        '200': { description: Members removed. }
+  /v1/teams/{teamID}/groups/{groupID}/permitted-groups:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/groupID'
+    get:
+      operationId: getPermittedTeamGroups
+      summary: Get Permitted Team Groups
+      description: List the groups this group is permitted to connect to.
+      tags: [Group]
+      responses:
+        '200': { description: Permitted groups. }
+    post:
+      operationId: addPermittedTeamGroups
+      summary: Add Permitted Team Groups
+      description: Grant this group access to additional groups.
+      tags: [Group]
+      responses:
+        '200': { description: Permitted groups added. }
+  /v1/teams/{teamID}/groups/{groupID}/permitted-groups/{permittedGroupID}:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/groupID'
+      - $ref: '#/components/parameters/permittedGroupID'
+    put:
+      operationId: updatePermittedGroupPermissions
+      summary: Update permissions between groups
+      description: Update the permissions between two groups.
+      tags: [Group]
+      responses:
+        '200': { description: Permissions updated. }
+    delete:
+      operationId: removePermittedTeamGroups
+      summary: Remove Permitted Team Groups
+      description: Revoke this group's access to another group.
+      tags: [Group]
+      responses:
+        '204': { description: Permitted group removed. }
+  /v1/teams/{teamID}/machines:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getTeamMachines
+      summary: Get Team Machines
+      description: >-
+        Get a paginated list of team machines. Various filters can be applied
+        through query parameters to narrow the result to a specific subset. The
+        View Team Computers permission is required.
+      tags: [Machine]
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - name: name
+          in: query
+          schema: { type: string }
+        - name: is_online
+          in: query
+          schema: { type: boolean }
+        - name: is_guest_access
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200': { description: A paginated list of team machines. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/machines/{machineID}:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/machineID'
+    get:
+      operationId: getTeamMachine
+      summary: Get Team Machine
+      description: Get a team machine. The View Team Computers permission is required.
+      tags: [Machine]
+      responses:
+        '200': { description: The team machine. }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateTeamMachine
+      summary: Update Team Machine
+      description: Update a team machine.
+      tags: [Machine]
+      responses:
+        '200': { description: Machine updated. }
+    delete:
+      operationId: deleteTeamMachine
+      summary: Delete Team Machine
+      description: >-
+        Delete a team machine. The existing session for the deleted machine is
+        immediately invalidated. The Delete Team Computers permission is required.
+      tags: [Machine]
+      responses:
+        '204': { description: Machine deleted. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/machines/{machineID}/assignment:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/machineID'
+    put:
+      operationId: setTeamMachineAssignment
+      summary: Set Team Machine Assignment
+      description: Set a team machine's assignment.
+      tags: [Machine]
+      responses:
+        '200': { description: Assignment set. }
+    delete:
+      operationId: removeTeamMachineAssignment
+      summary: Remove Team Machine Assignment
+      description: >-
+        Remove a team machine assignment. Team member, team group and
+        reservation assignments will be removed. The Manage Team Computers
+        permission is required.
+      tags: [Machine]
+      responses:
+        '204': { description: Assignment removed. }
+    post:
+      operationId: createTeamMachineAssignment
+      summary: Create Team Machine Assignment (Deprecated)
+      deprecated: true
+      description: Deprecated. Use Set Team Machine Assignment instead.
+      tags: [Machine]
+      responses:
+        '200': { description: Assignment created. }
+  /v1/teams/{teamID}/machines/{machineID}/users/{userID}:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/machineID'
+      - $ref: '#/components/parameters/userID'
+    delete:
+      operationId: kickUserFromMachine
+      summary: Kick User
+      description: >-
+        Kick a user from a host machine. The user is disconnected immediately.
+        The Team Machine Kick User permission is required.
+      tags: [Machine]
+      responses:
+        '204': { description: User kicked. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/guest-access-invites:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getGuestAccessInvites
+      summary: Get Guest Access Invites
+      description: >-
+        Get a paginated list of guest access invites. The View Guest Access
+        Links permission is required.
+      tags: [Guest Access Invite]
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200': { description: A paginated list of guest access invites. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+    post:
+      operationId: createGuestAccessInvite
+      summary: Create Guest Access Invite
+      description: Create a time-limited guest access invite.
+      tags: [Guest Access Invite]
+      responses:
+        '201': { description: Guest access invite created. }
+  /v1/teams/{teamID}/guest-access-invites/{guestAccessInviteID}:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/guestAccessInviteID'
+    get:
+      operationId: getGuestAccessInvite
+      summary: Get Guest Access Invite
+      description: >-
+        Get a team guest access invite. The View Guest Access Links permission
+        is required.
+      tags: [Guest Access Invite]
+      responses:
+        '200': { description: The guest access invite. }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateGuestAccessInvite
+      summary: Update Guest Access Invite
+      description: Update a guest access invite.
+      tags: [Guest Access Invite]
+      responses:
+        '200': { description: Guest access invite updated. }
+    delete:
+      operationId: cancelGuestAccessInvite
+      summary: Cancel Guest Access Invite
+      description: Cancel a guest access invite.
+      tags: [Guest Access Invite]
+      responses:
+        '204': { description: Guest access invite cancelled. }
+  /v1/teams/{teamID}/guest-access-invites/{guestAccessInviteID}/guest:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/guestAccessInviteID'
+    delete:
+      operationId: kickGuestAccessGuest
+      summary: Kick Guest Access Guest
+      description: >-
+        Disconnect the guest from the host machine immediately. If the invite is
+        still within its valid window, the guest can reconnect.
+      tags: [Guest Access Invite]
+      responses:
+        '204': { description: Guest kicked. }
+  /v1/teams/{teamID}/guest-access-invite-credits:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getGuestAccessInviteCredits
+      summary: Get Guest Access Invite Credits
+      description: Get the team's remaining guest access invite credits.
+      tags: [Guest Access Invite]
+      responses:
+        '200': { description: Remaining guest access invite credits. }
+  /v1/teams/{teamID}/app-rules:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getAppRules
+      summary: Get App Rules
+      description: >-
+        Get a paginated list of app rules. The View App Rules permission is required.
+      tags: [App Rule]
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200': { description: A paginated list of app rules. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /v1/teams/{teamID}/app-rules/{appRuleID}/assign:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/appRuleID'
+    post:
+      operationId: assignAppRule
+      summary: Assign App Rule to Members and Machines
+      description: Assign an app rule to team members and machines.
+      tags: [App Rule]
+      responses:
+        '200': { description: App rule assigned. }
+  /v1/teams/{teamID}/app-rules/{appRuleID}/unassign:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/appRuleID'
+    post:
+      operationId: unassignAppRule
+      summary: Un-assign App Rule from Members and Machines
+      description: Un-assign an app rule from team members and machines.
+      tags: [App Rule]
+      responses:
+        '200': { description: App rule un-assigned. }
+  /v1/teams/{teamID}/relays:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getRelays
+      summary: Get Relays
+      description: List the team's relays.
+      tags: [Relay]
+      responses:
+        '200': { description: The team's relays. }
+  /v1/teams/{teamID}/relays/{relayID}:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+      - $ref: '#/components/parameters/relayID'
+    put:
+      operationId: updateRelay
+      summary: Update Relay
+      description: Update a team relay.
+      tags: [Relay]
+      responses:
+        '200': { description: Relay updated. }
+  /v1/teams/{teamID}/events:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: getAuditLogEvents
+      summary: Get Audit Log Events
+      description: >-
+        Get team audit log events. The Access Audit Log permission is required.
+        Maximum 50 requests in a 5 minute window; blocked for 5 minutes if this
+        quota is exceeded.
+      tags: [Audit Log]
+      parameters:
+        - $ref: '#/components/parameters/start_at'
+        - $ref: '#/components/parameters/end_at'
+        - name: user_id
+          in: query
+          schema: { type: string }
+        - name: event_names
+          in: query
+          schema: { type: string }
+        - $ref: '#/components/parameters/limit'
+        - name: cursor
+          in: query
+          schema: { type: string }
+        - name: after
+          in: query
+          schema: { type: string }
+      responses:
+        '200': { description: A page of audit log events. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+  /v2/teams/{teamID}/events:
+    parameters:
+      - $ref: '#/components/parameters/teamID'
+    get:
+      operationId: listAuditLogEvents
+      summary: List Audit Log Events
+      description: >-
+        List team audit log events (v2, cursor-paginated). The Access Audit Log
+        permission is required. Maximum 50 requests in a 5 minute window;
+        blocked for 5 minutes if this quota is exceeded. Supports gzip via the
+        Accept-Encoding header.
+      tags: [Audit Log]
+      parameters:
+        - $ref: '#/components/parameters/start_at'
+        - $ref: '#/components/parameters/end_at'
+        - name: user_id
+          in: query
+          schema: { type: string }
+        - name: event_names
+          in: query
+          schema: { type: string }
+        - $ref: '#/components/parameters/limit'
+        - name: cursor
+          in: query
+          schema: { type: string }
+        - name: after
+          in: query
+          schema: { type: string }
+      responses:
+        '200': { description: A page of audit log events. }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        A Parsec for Teams API key presented as an HTTP Bearer token:
+        `Authorization: Bearer YOUR_API_KEY`. API keys are created and managed in
+        the Parsec for Teams dashboard.
+  parameters:
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema: { type: string }
+      description: The team identifier (e.g. team_123abc).
+    userID:
+      name: userID
+      in: path
+      required: true
+      schema: { type: string }
+    groupID:
+      name: groupID
+      in: path
+      required: true
+      schema: { type: string }
+    permittedGroupID:
+      name: permittedGroupID
+      in: path
+      required: true
+      schema: { type: string }
+    machineID:
+      name: machineID
+      in: path
+      required: true
+      schema: { type: string }
+    guestAccessInviteID:
+      name: guestAccessInviteID
+      in: path
+      required: true
+      schema: { type: string }
+    appRuleID:
+      name: appRuleID
+      in: path
+      required: true
+      schema: { type: string }
+    relayID:
+      name: relayID
+      in: path
+      required: true
+      schema: { type: string }
+    offset:
+      name: offset
+      in: query
+      schema: { type: integer, minimum: 0 }
+      description: Pagination offset.
+    limit:
+      name: limit
+      in: query
+      schema: { type: integer }
+      description: Maximum number of results to return per page.
+    start_at:
+      name: start_at
+      in: query
+      schema: { type: string, format: date-time }
+      description: RFC 3339 start of the query window.
+    end_at:
+      name: end_at
+      in: query
+      schema: { type: string, format: date-time }
+      description: RFC 3339 end of the query window.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+    Forbidden:
+      description: >-
+        The API key's team role lacks the permission required for this endpoint.
+    NotFound:
+      description: The requested resource was not found.
+    RateLimited:
+      description: >-
+        Rate limit exceeded. Maximum 50 requests in a 5 minute window; blocked
+        for 5 minutes when the quota is exceeded.
+  schemas:
+    TeamMember:
+      type: object
+      description: A member of a Parsec team.
+      properties:
+        user_id: { type: string }
+        email: { type: string, format: email }
+        is_admin: { type: boolean }
+        status: { type: string }
+        group_id: { type: string }
+    TeamMemberInvite:
+      type: object
+      description: An outstanding invitation to join a team.
+      properties:
+        email: { type: string, format: email }
+        team_group_id: { type: string }
+        is_admin: { type: boolean }
+        status: { type: string }
+        send_email: { type: boolean }
+    TeamGroup:
+      type: object
+      description: A group used to organize members and grant common access.
+      properties:
+        name: { type: string }
+    Machine:
+      type: object
+      description: A team machine (computer) that members connect to.
+      properties:
+        name: { type: string }
+        is_online: { type: boolean }
+        is_guest_access: { type: boolean }
+        assignment: { type: string }
+    GuestAccessInvite:
+      type: object
+      description: A time-limited invite granting an external guest access to a machine.
+    Guest:
+      type: object
+      description: An external guest connected via a guest access invite.
+    AppRule:
+      type: object
+      description: A rule controlling which applications are permitted.
+      properties:
+        name: { type: string }
+    Relay:
+      type: object
+      description: A network relay used for connections.
+      properties:
+        name: { type: string }
+    Event:
+      type: object
+      description: An entry in the team audit log.

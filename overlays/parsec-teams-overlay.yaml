@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Parsec Teams API
+  version: 1.0.0
+extends: openapi/parsec-teams-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: parsec
+    x-apievangelist-rating-family: [authentication, conventions, lifecycle, errors]
+    x-parsec-permission-model: >-
+      Each operation enforces a granular team permission; a 403 is returned when
+      the API key's role lacks it.
+- target: $.info
+  update:
+    x-rate-limit:
+      limit: 50
+      window: 5m
+      penalty: 5m block
+      applies_to: [createTeamInvites, resendTeamInvites, getAuditLogEvents, listAuditLogEvents]

@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+source: https://parsec.app/docs/teams-api
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Teams API uses an API key presented as an HTTP Bearer token, not OAuth 2.0.
+- id: bearer-token-http-auth
+  conforms: true
+  evidence: 'Authorization: Bearer YOUR_API_KEY (RFC 6750-style bearer usage).'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json error envelope is documented.
+- id: pagination
+  conforms: true
+  evidence: Offset/limit pagination on list endpoints; cursor pagination on v2 audit-log events.
+- id: soc2-type2
+  conforms: true
+  evidence: Parsec states it is SOC 2 Type 2 certified (https://parsec.app/security).

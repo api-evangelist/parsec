@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: derived
+format: http-status
+source: openapi/parsec-teams-openapi.yml
+notes: >-
+  Parsec's Teams API does not publish an RFC 9457 problem+json envelope; errors
+  are signalled with HTTP status codes. The 403 responses are permission-driven
+  (the API key's team role lacks the required permission for the endpoint).
+problems:
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid API key.
+  remediation: 'Present a valid API key as: Authorization: Bearer YOUR_API_KEY'
+- status: 403
+  title: Forbidden — permission required
+  meaning: >-
+    The API key's team role lacks the permission required for this endpoint
+    (e.g. View Team Members, Delete Team Group, Access Audit Log).
+  remediation: Grant the required team permission to the API key's role.
+- status: 404
+  title: Not Found
+  meaning: The requested team resource does not exist.
+- status: 429
+  title: Too Many Requests
+  meaning: >-
+    Rate limit exceeded (50 requests per 5 minute window on invite and
+    audit-log endpoints); the caller is blocked for 5 minutes.
+  remediation: Back off and retry after the 5-minute block window.
+  source_operation: openapi/parsec-teams-openapi.yml#getAuditLogEvents

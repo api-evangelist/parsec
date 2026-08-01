@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: parsec-onboard-team-member.md
+  name: Invite and organize a team member
+  api: openapi/parsec-teams-openapi.yml
+  operations: [createTeamInvites, getTeamMembers, getTeamGroups, assignTeamGroupMembers]
+- file: parsec-provision-machine-access.md
+  name: Provision and assign a team machine
+  api: openapi/parsec-teams-openapi.yml
+  operations: [getTeamMachines, setTeamMachineAssignment, kickUserFromMachine]
+- file: parsec-guest-access.md
+  name: Issue time-limited guest access
+  api: openapi/parsec-teams-openapi.yml
+  operations: [getGuestAccessInviteCredits, createGuestAccessInvite, getGuestAccessInvites, kickGuestAccessGuest]
+- file: parsec-audit-log.md
+  name: Pull the team audit log
+  api: openapi/parsec-teams-openapi.yml
+  operations: [listAuditLogEvents]

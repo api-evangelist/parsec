@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: https://parsec.app/docs/teams-api
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: 'Bearer YOUR_API_KEY'
+  permission_model: >-
+    Every endpoint enforces a granular team permission (e.g. View Team Members,
+    Create Team Invites, Delete Team Computers, Access Audit Log). A 403 is
+    returned when the API key's role lacks the required permission.
+  see_also: authentication/parsec-authentication.yml
+idempotency:
+  supported: false
+  notes: No idempotency-key header is documented for the Teams API.
+pagination:
+  styles:
+  - style: offset
+    params: [offset, limit]
+    applies_to: [members, groups, machines, guest-access-invites, app-rules, member-invites]
+  - style: cursor
+    params: [cursor, after, limit]
+    applies_to: [v2 audit-log events]
+versioning:
+  scheme: uri-path
+  versions: [v1, v2]
+  notes: >-
+    The audit-log events endpoint exists in both /v1 and /v2; v2 adds cursor
+    pagination and gzip (Accept-Encoding) support.
+  see_also: lifecycle/parsec-lifecycle.yml
+rate_limiting:
+  documented: true
+  limit: 50 requests per 5 minute window
+  penalty: blocked for 5 minutes when the quota is exceeded
+  applies_to:
+  - Create Team Invites
+  - Resend Team Invites
+  - Get Audit Log Events
+  - List Audit Log Events
+  see_also: rate-limits/parsec-rate-limits.yml
+error_envelope:
+  format: json
+  problem_details: false
+  see_also: errors/parsec-problem-types.yml

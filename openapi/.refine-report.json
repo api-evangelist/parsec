@@ -1,0 +1,28 @@
+{
+  "provider": "parsec",
+  "sources": [
+    "parsec-app-rule-api-openapi.yml",
+    "parsec-audit-log-api-openapi.yml",
+    "parsec-group-api-openapi.yml",
+    "parsec-guest-access-invite-api-openapi.yml",
+    "parsec-machine-api-openapi.yml",
+    "parsec-member-api-openapi.yml",
+    "parsec-member-invite-api-openapi.yml",
+    "parsec-relay-api-openapi.yml"
+  ],
+  "outputs": [
+    "parsec-app-rule-api-openapi.yml",
+    "parsec-audit-log-api-openapi.yml",
+    "parsec-group-api-openapi.yml",
+    "parsec-guest-access-invite-api-openapi.yml",
+    "parsec-machine-api-openapi.yml",
+    "parsec-member-api-openapi.yml",
+    "parsec-member-invite-api-openapi.yml",
+    "parsec-relay-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

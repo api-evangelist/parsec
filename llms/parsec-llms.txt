@@ -1,0 +1,30 @@
+# Parsec
+
+> Parsec is a high-performance, low-latency remote desktop and interactive video streaming product (a Unity company) used to access graphics-intensive, latency-sensitive applications from anywhere. Parsec for Teams adds organization-wide administration, and the Parsec for Teams API exposes that admin surface — members, groups, machines, guest access, app rules, relays, and the audit log — to applications.
+
+## APIs
+- [Parsec for Teams](https://parsec.app/teams): Admin API for managing team members, groups, machines, guest access, app rules, relays, and audit logs. Base URL https://api.parsec.app, HTTP Bearer API-key auth.
+
+## Specs
+- [Teams API OpenAPI](openapi/parsec-teams-openapi.yml): OpenAPI 3.0 reconstructed from the published Teams API reference.
+
+## Docs
+- [Teams API reference](https://parsec.app/docs/teams-api)
+- [Parsec for Teams](https://parsec.app/teams)
+- [Support / Help Center](https://support.parsec.app)
+- [Security](https://parsec.app/security)
+- [Changelog](https://parsec.app/changelog)
+- [Pricing](https://parsec.app/pricing)
+- [Terms](https://parsec.app/terms)
+
+## Artifacts
+- [Authentication](authentication/parsec-authentication.yml)
+- [Conventions](conventions/parsec-conventions.yml)
+- [Rate limits](rate-limits/parsec-rate-limits.yml)
+- [Error / problem types](errors/parsec-problem-types.yml)
+- [Lifecycle](lifecycle/parsec-lifecycle.yml)
+- [Changelog](changelog/parsec-changelog.yml)
+- [Conformance](conformance/parsec-conformance.yml)
+- [Data model](data-model/parsec-data-model.yml)
+- [MCP (candidate)](mcp/parsec-mcp.yml)
+- [Agent skills](skills/_index.yml)

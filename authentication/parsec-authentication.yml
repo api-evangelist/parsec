@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/parsec-teams-openapi.yml
+docs: https://parsec.app/docs/teams-api
+notes: >-
+  Parsec for Teams authenticates with an API key presented as an HTTP Bearer
+  token (Authorization: Bearer YOUR_API_KEY). API keys are created and managed
+  in the Parsec for Teams dashboard (dash.parsec.app) and are scoped by a
+  granular team permission model (e.g. View Team Members, Delete Team Machine,
+  Access Audit Log) rather than OAuth scopes.
+summary:
+  types:
+  - http
+  api_key_style: bearer-token
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'A Parsec for Teams API key presented as an HTTP Bearer token: `Authorization:
+    Bearer YOUR_API_KEY`. API keys are created and managed in the Parsec for Teams dashboard.'
+  sources:
+  - openapi/parsec-teams-openapi.yml

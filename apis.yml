@@ -1,7 +1,30 @@
 aid: parsec
 name: Parsec
-description: Parsec is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Parsec is a high-performance, low-latency remote desktop and interactive video
+  streaming product, now a Unity company, used to access graphics-intensive and
+  latency-sensitive applications from anywhere across any device. Its
+  peer-to-peer architecture streams in silky-smooth high definition and is used
+  by game studios (EA, Ubisoft, Blizzard, Square Enix), film/TV, animation,
+  broadcast and architecture teams. Parsec for Teams adds organization-wide
+  administration, and the Parsec for Teams API exposes that admin surface —
+  managing members, groups, team machines (computers), time-limited guest
+  access, application rules, relays, and the team audit log — authenticated with
+  an API key presented as an HTTP Bearer token and governed by a granular team
+  permission model.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://parsec.app/_next/static/media/opengraph.60ec26bf.png
 url: https://raw.githubusercontent.com/api-evangelist/parsec/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +34,203 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1
 tags:
 - Company
-apis: []
+- Remote Desktop
+- Cloud Gaming
+- Streaming
+- Virtual Desktop
+- Team Management
+- Developer Tools
+- Gaming
+apis:
+- aid: parsec:parsec-app-rule-api
+  name: Parsec App Rule API
+  description: The App Rule API from Parsec — 3 operation(s) for app rule.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - App Rule
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-app-rule-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
+- aid: parsec:parsec-audit-log-api
+  name: Parsec Audit Log API
+  description: The Audit Log API from Parsec — 2 operation(s) for audit log.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - Audit Log
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-audit-log-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
+- aid: parsec:parsec-group-api
+  name: Parsec Group API
+  description: The Group API from Parsec — 7 operation(s) for group.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - Group
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-group-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
+- aid: parsec:parsec-guest-access-invite-api
+  name: Parsec Guest Access Invite API
+  description: The Guest Access Invite API from Parsec — 4 operation(s) for guest access invite.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - Guest Access Invite
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-guest-access-invite-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
+- aid: parsec:parsec-machine-api
+  name: Parsec Machine API
+  description: The Machine API from Parsec — 4 operation(s) for machine.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - Machine
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-machine-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
+- aid: parsec:parsec-member-api
+  name: Parsec Member API
+  description: The Member API from Parsec — 2 operation(s) for member.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - Member
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-member-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
+- aid: parsec:parsec-member-invite-api
+  name: Parsec Member Invite API
+  description: The Member Invite API from Parsec — 3 operation(s) for member invite.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - Member Invite
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-member-invite-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
+- aid: parsec:parsec-relay-api
+  name: Parsec Relay API
+  description: The Relay API from Parsec — 2 operation(s) for relay.
+  humanURL: https://parsec.app/teams
+  baseURL: https://api.parsec.app
+  tags:
+  - Relay
+  properties:
+  - type: OpenAPI
+    url: openapi/parsec-relay-api-openapi.yml
+  - type: Documentation
+    url: https://parsec.app/docs/teams-api
+  - type: APIReference
+    url: https://parsec.app/docs/teams-api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DeveloperPortal
+  url: https://parsec.app/docs/teams-api
+- type: Documentation
+  url: https://parsec.app/docs/teams-api
+- type: APIReference
+  url: https://parsec.app/docs/teams-api
+- type: Support
+  url: https://support.parsec.app
+- type: Blog
+  url: https://parsec.app/blog
+- type: GitHubOrganization
+  url: https://github.com/parsec-cloud
+- type: Pricing
+  url: https://parsec.app/pricing
+- type: SignUp
+  url: https://dash.parsec.app/signup
+- type: Login
+  url: https://dash.parsec.app/login
+- type: TermsOfService
+  url: https://parsec.app/terms
+- type: PrivacyPolicy
+  url: https://unity.com/legal/privacy-policy
+- type: StatusPage
+  url: https://status.parsec.app
+- type: ChangeLog
+  url: https://parsec.app/changelog
+- type: Security
+  url: https://parsec.app/security
+- type: Compliance
+  url: https://parsec.app/security
+- type: OpenAPI
+  url: openapi/parsec-teams-openapi.yml
+- type: Authentication
+  url: authentication/parsec-authentication.yml
+- type: Conventions
+  url: conventions/parsec-conventions.yml
+- type: RateLimits
+  url: rate-limits/parsec-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/parsec-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/parsec-lifecycle.yml
+- type: Deprecation
+  url: https://parsec.app/changelog
+- type: Conformance
+  url: conformance/parsec-conformance.yml
+- type: TrustCenter
+  url: https://parsec.app/security
+- type: VulnerabilityDisclosure
+  url: security/parsec-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/parsec-domain-security.yml
+- type: DataModel
+  url: data-model/parsec-data-model.yml
+- type: MCPServer
+  url: mcp/parsec-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/parsec-agentic-access.yml
+- type: Overlay
+  url: overlays/parsec-teams-overlay.yaml
+- type: LLMsTxt
+  url: llms/parsec-llms.txt
+- type: ChangeLog
+  url: changelog/parsec-changelog.yml

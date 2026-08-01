@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://parsec.app/changelog
+scheme: date-and-build
+scheme_notes: >-
+  Parsec uses two version patterns: numeric app build numbers (e.g. 150-104a)
+  and date-based API/service releases (v2026-06-13.0 = vYYYY-MM-DD.sequence).
+current: 150-104a
+entries:
+- version: 150-104a
+  date: '2026-06-23'
+  breaking: false
+  highlights:
+  - Improved video rate control and macOS multi-channel audio support
+  - Windows stability and security enhancements
+  - Bugfixes for macOS congestion reporting and clipboard
+- version: v2026-06-13.0
+  date: '2026-06-13'
+  breaking: false
+  highlights:
+  - Support inbox retired; all requests now go through support.parsec.app
+- version: v2026-06-05.0
+  date: '2026-06-05'
+  breaking: false
+  highlights:
+  - Teams API enhancements to team member responses
+  - Bugfix for the Teams API is_admin field
