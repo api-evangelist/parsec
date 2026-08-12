@@ -199,7 +199,7 @@ common:
 - type: Compliance
   url: https://parsec.app/security
 - type: OpenAPI
-  url: openapi/parsec-teams-openapi.yml
+  url: openapi/_original/parsec-teams-openapi.yml
 - type: Authentication
   url: authentication/parsec-authentication.yml
 - type: Conventions
