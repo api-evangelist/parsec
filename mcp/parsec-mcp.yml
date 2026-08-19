@@ -2,10 +2,8 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/parsec-teams-openapi.yml
-notes: >-
-  No official hosted/remote Parsec MCP server was found. This is a candidate
-  tool list derived one-to-one from the Teams API operations, provided as a
-  starting point for an MCP wrapper.
+notes: No official hosted/remote Parsec MCP server was found. This is a candidate tool list derived one-to-one
+  from the Teams API operations, provided as a starting point for an MCP wrapper.
 server:
   name: parsec-teams
   transport: http
@@ -40,3 +38,9 @@ tools:
 - name: list_audit_log_events
   description: List team audit log events (v2, cursor-paginated).
   source_operation: openapi/parsec-teams-openapi.yml#listAuditLogEvents
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census

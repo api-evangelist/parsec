@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App Rule",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get App Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/app-rules",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of app rules. The View App Rules permission is required."
+        },
+        {
+          "info": {
+            "name": "Assign App Rule to Members and Machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/app-rules/:appRuleID/assign",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "appRuleID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Assign an app rule to team members and machines."
+        },
+        {
+          "info": {
+            "name": "Un-assign App Rule from Members and Machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/app-rules/:appRuleID/unassign",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "appRuleID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Un-assign an app rule from team members and machines."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

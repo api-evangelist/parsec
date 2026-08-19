@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule Member API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Member",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Team Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/members",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of team members. The View Team Members permission is required to access this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Team Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/members/:userID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a team member. The View Team Members permission is required."
+        },
+        {
+          "info": {
+            "name": "Remove Team Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/members/:userID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a team member. Team Computers assigned to the removed member will be unassigned on removal. The Remove Team Members permission is required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

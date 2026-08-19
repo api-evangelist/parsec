@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule Audit Log API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Log",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Audit Log Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/events",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "start_at",
+                "value": "",
+                "type": "query",
+                "description": "RFC 3339 start of the query window."
+              },
+              {
+                "name": "end_at",
+                "value": "",
+                "type": "query",
+                "description": "RFC 3339 end of the query window."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_names",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get team audit log events. The Access Audit Log permission is required. Maximum 50 requests in a 5 minute window; blocked for 5 minutes if this quota is exceeded."
+        },
+        {
+          "info": {
+            "name": "List Audit Log Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v2/teams/:teamID/events",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "start_at",
+                "value": "",
+                "type": "query",
+                "description": "RFC 3339 start of the query window."
+              },
+              {
+                "name": "end_at",
+                "value": "",
+                "type": "query",
+                "description": "RFC 3339 end of the query window."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event_names",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List team audit log events (v2, cursor-paginated). The Access Audit Log permission is required. Maximum 50 requests in a 5 minute window; blocked for 5 minutes if this quota is exceeded. Supports gzip via the Accept-Encoding header."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

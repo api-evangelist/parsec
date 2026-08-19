@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule Machine API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Machine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Team Machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_online",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_guest_access",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a paginated list of team machines. Various filters can be applied through query parameters to narrow the result to a specific subset. The View Team Computers permission is required."
+        },
+        {
+          "info": {
+            "name": "Get Team Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines/:machineID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "machineID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a team machine. The View Team Computers permission is required."
+        },
+        {
+          "info": {
+            "name": "Update Team Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines/:machineID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "machineID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a team machine."
+        },
+        {
+          "info": {
+            "name": "Delete Team Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines/:machineID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "machineID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a team machine. The existing session for the deleted machine is immediately invalidated. The Delete Team Computers permission is required."
+        },
+        {
+          "info": {
+            "name": "Create Team Machine Assignment (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines/:machineID/assignment",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "machineID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deprecated. Use Set Team Machine Assignment instead."
+        },
+        {
+          "info": {
+            "name": "Set Team Machine Assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines/:machineID/assignment",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "machineID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Set a team machine's assignment."
+        },
+        {
+          "info": {
+            "name": "Remove Team Machine Assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines/:machineID/assignment",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "machineID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a team machine assignment. Team member, team group and reservation assignments will be removed. The Manage Team Computers permission is required."
+        },
+        {
+          "info": {
+            "name": "Kick User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/machines/:machineID/users/:userID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "machineID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Kick a user from a host machine. The user is disconnected immediately. The Team Machine Kick User permission is required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

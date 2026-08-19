@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule Member Invite API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Member Invite",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Team Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/member-invites",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of team member invites. The View Team Invites permission is required."
+        },
+        {
+          "info": {
+            "name": "Create Team Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/member-invites",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Create team member invites. Maximum 50 requests in a 5 minute window; blocked for 5 minutes if this quota is exceeded. The Create Team Invites permission is required."
+        },
+        {
+          "info": {
+            "name": "Update Team Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parsec.app/v1/teams/:teamID/member-invites",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Update team member invites. The Manage Team Invites permission is required."
+        },
+        {
+          "info": {
+            "name": "Cancel Team Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/cancel-member-invites",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Cancel outstanding team member invites. The Delete Team Invites permission is required."
+        },
+        {
+          "info": {
+            "name": "Resend Team Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/resend-member-invites",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Resend team member invites. Maximum 50 requests in a 5 minute window; blocked for 5 minutes if this quota is exceeded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

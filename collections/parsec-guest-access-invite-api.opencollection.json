@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule Guest Access Invite API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Guest Access Invite",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Guest Access Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/guest-access-invites",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of guest access invites. The View Guest Access Links permission is required."
+        },
+        {
+          "info": {
+            "name": "Create Guest Access Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/guest-access-invites",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Create a time-limited guest access invite."
+        },
+        {
+          "info": {
+            "name": "Get Guest Access Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/guest-access-invites/:guestAccessInviteID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "guestAccessInviteID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a team guest access invite. The View Guest Access Links permission is required."
+        },
+        {
+          "info": {
+            "name": "Update Guest Access Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parsec.app/v1/teams/:teamID/guest-access-invites/:guestAccessInviteID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "guestAccessInviteID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a guest access invite."
+        },
+        {
+          "info": {
+            "name": "Cancel Guest Access Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/guest-access-invites/:guestAccessInviteID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "guestAccessInviteID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a guest access invite."
+        },
+        {
+          "info": {
+            "name": "Kick Guest Access Guest",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/guest-access-invites/:guestAccessInviteID/guest",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "guestAccessInviteID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disconnect the guest from the host machine immediately. If the invite is still within its valid window, the guest can reconnect."
+        },
+        {
+          "info": {
+            "name": "Get Guest Access Invite Credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/guest-access-invite-credits",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Get the team's remaining guest access invite credits."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

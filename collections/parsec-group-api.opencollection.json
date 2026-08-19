@@ -1,0 +1,324 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule Group API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Team Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of team groups. The View Groups permission is required."
+        },
+        {
+          "info": {
+            "name": "Create Team Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "Create a team group. The Create Team Group permission is required."
+        },
+        {
+          "info": {
+            "name": "Get Team Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a team group. The View Groups permission is required."
+        },
+        {
+          "info": {
+            "name": "Update Team Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a team group."
+        },
+        {
+          "info": {
+            "name": "Delete Team Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a team group. The Delete Team Group permission is required."
+        },
+        {
+          "info": {
+            "name": "Get Team Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID/members",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List the members of a team group."
+        },
+        {
+          "info": {
+            "name": "Assign Team Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID/add-members",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Assign members to a team group."
+        },
+        {
+          "info": {
+            "name": "Remove Team Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID/remove-members",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove members from a team group."
+        },
+        {
+          "info": {
+            "name": "Get Permitted Team Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID/permitted-groups",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List the groups this group is permitted to connect to."
+        },
+        {
+          "info": {
+            "name": "Add Permitted Team Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID/permitted-groups",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Grant this group access to additional groups."
+        },
+        {
+          "info": {
+            "name": "Update permissions between groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID/permitted-groups/:permittedGroupID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permittedGroupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update the permissions between two groups."
+        },
+        {
+          "info": {
+            "name": "Remove Permitted Team Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.parsec.app/v1/teams/:teamID/groups/:groupID/permitted-groups/:permittedGroupID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "permittedGroupID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revoke this group's access to another group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

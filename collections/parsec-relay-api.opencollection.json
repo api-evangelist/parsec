@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Parsec Teams App Rule Relay API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Relay",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Relays",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.parsec.app/v1/teams/:teamID/relays",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              }
+            ]
+          },
+          "docs": "List the team's relays."
+        },
+        {
+          "info": {
+            "name": "Update Relay",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.parsec.app/v1/teams/:teamID/relays/:relayID",
+            "params": [
+              {
+                "name": "teamID",
+                "value": "",
+                "type": "path",
+                "description": "The team identifier (e.g. team_123abc)."
+              },
+              {
+                "name": "relayID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a team relay."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
