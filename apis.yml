@@ -180,6 +180,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/parsec-capability-edges.yml
+  name: Parsec Business Capability Map
 - type: DeveloperPortal
   url: https://parsec.app/docs/teams-api
 - type: Documentation

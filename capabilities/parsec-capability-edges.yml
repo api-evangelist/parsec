@@ -1,0 +1,25 @@
+slug: parsec
+provider: Parsec
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Group
+  spec_file: parsec-group-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /v1/teams/{teamID}/groups/{groupID}/add-members "Assign Team Group Members"; PUT .../permitted-groups/{permittedGroupID}
+    "Update permissions between groups"
+  reason: Operations create groups, manage group membership, and set permissions between groups — group-based
+    access control administration, which is Identity & Access Management for the remote-access estate.
