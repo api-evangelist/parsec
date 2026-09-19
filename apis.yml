@@ -84,6 +84,8 @@ apis:
   humanURL: https://parsec.app/teams
   baseURL: https://api.parsec.app
   tags:
+  - Audit Logs
+  tags_raw:
   - Audit Log
   properties:
   - type: OpenAPI
