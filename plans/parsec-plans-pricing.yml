@@ -1,0 +1,61 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://parsec.app/pricing
+sources:
+- https://parsec.app/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: per-seat
+published: true
+note: Per-seat subscription page; Teams API access included only in Enterprise tier. No volume discounts
+  stated.
+plan_count: 6
+currency: USD
+plans:
+- name: Personal Use
+  price_text: Free
+  period: none
+  unit: user
+  included_quota: Parsec core features
+- name: Individuals (Warp)
+  price_text: $8.33 per user/month, paid annually
+  price: 8.33
+  currency: USD
+  period: month
+  unit: user
+  included_quota: Multi-monitor, 4:4:4 color, privacy mode, Wacom support
+- name: Individuals (Warp) monthly
+  price_text: $ 9.99
+  price: 9.99
+  currency: USD
+  period: month
+  unit: user
+- name: Teams
+  price_text: $30 per user/month, paid annually
+  price: 30
+  currency: USD
+  period: month
+  unit: user
+  included_quota: Admin panel, SSO, team computers, audit logs (last 7 days)
+  overage: Guest Access for external users ($25 per invitation)
+- name: Teams monthly
+  price_text: $ 35
+  price: 35
+  currency: USD
+  period: month
+  unit: user
+- name: Enterprise
+  price_text: $45 per user/month, paid annually only
+  price: 45
+  currency: USD
+  period: month
+  unit: user
+  included_quota: Teams API access, high performance relay, role based access, full audit logs, SCIM
+rate_limit_statements:
+- Multi-monitor streaming (Up to 3)
+- 24hr first response SLA
+- grant temporary access to anyone invited for up to five days
