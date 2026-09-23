@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Parsec Teams App Rule Member API
+  title: Parsec Teams Member API
   version: v1
-  description: 'The Parsec for Teams API exposes everything a Parsec for Teams admin can do to an API application: inviting and managing team members and groups, provisioning and assigning team machines (computers), issuing time-limited guest access invites, managing application rules and relays, and reading the team audit log. Authentication is via an API key presented as an HTTP Bearer token. Every endpoint enforces a granular team permission (for example "View Team Members", "Delete Team Machine", "Access Audit Log").'
+  description: 'The Parsec for Teams API exposes everything a Parsec for Teams admin can do to an API application: inviting and managing team members and groups, provisioning and assigning team machines (computers), issuing time-limited guest access invites, managing application rules and relays, and reading the team audit log.'
   contact:
     name: Parsec Support
     url: https://support.parsec.app
@@ -64,12 +64,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   responses:
-    Forbidden:
-      description: The API key's team role lacks the permission required for this endpoint.
-    Unauthorized:
-      description: Missing or invalid API key.
     NotFound:
       description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid API key.
+    Forbidden:
+      description: The API key's team role lacks the permission required for this endpoint.
   parameters:
     teamID:
       name: teamID
@@ -78,12 +78,6 @@ components:
       schema:
         type: string
       description: The team identifier (e.g. team_123abc).
-    userID:
-      name: userID
-      in: path
-      required: true
-      schema:
-        type: string
     offset:
       name: offset
       in: query
@@ -91,6 +85,12 @@ components:
         type: integer
         minimum: 0
       description: Pagination offset.
+    userID:
+      name: userID
+      in: path
+      required: true
+      schema:
+        type: string
     limit:
       name: limit
       in: query

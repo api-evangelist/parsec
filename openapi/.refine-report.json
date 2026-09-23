@@ -1,14 +1,7 @@
 {
   "provider": "parsec",
   "sources": [
-    "parsec-app-rule-api-openapi.yml",
-    "parsec-audit-log-api-openapi.yml",
-    "parsec-group-api-openapi.yml",
-    "parsec-guest-access-invite-api-openapi.yml",
-    "parsec-machine-api-openapi.yml",
-    "parsec-member-api-openapi.yml",
-    "parsec-member-invite-api-openapi.yml",
-    "parsec-relay-api-openapi.yml"
+    "_original/parsec-teams-openapi.yml"
   ],
   "outputs": [
     "parsec-app-rule-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "parsec-teams-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "parsec-app-rule-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parsec-audit-log-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parsec-group-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parsec-guest-access-invite-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parsec-machine-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parsec-member-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parsec-member-invite-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "parsec-relay-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

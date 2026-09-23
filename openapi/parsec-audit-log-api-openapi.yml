@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Parsec Teams App Rule Audit Log API
+  title: Parsec Teams Audit Log API
   version: v1
-  description: 'The Parsec for Teams API exposes everything a Parsec for Teams admin can do to an API application: inviting and managing team members and groups, provisioning and assigning team machines (computers), issuing time-limited guest access invites, managing application rules and relays, and reading the team audit log. Authentication is via an API key presented as an HTTP Bearer token. Every endpoint enforces a granular team permission (for example "View Team Members", "Delete Team Machine", "Access Audit Log").'
+  description: 'The Parsec for Teams API exposes everything a Parsec for Teams admin can do to an API application: inviting and managing team members and groups, provisioning and assigning team machines (computers), issuing time-limited guest access invites, managing application rules and relays, and reading the team audit log.'
   contact:
     name: Parsec Support
     url: https://support.parsec.app
@@ -88,11 +88,6 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    Forbidden:
-      description: The API key's team role lacks the permission required for this endpoint.
-    RateLimited:
-      description: Rate limit exceeded. Maximum 50 requests in a 5 minute window; blocked for 5 minutes when the quota is exceeded.
   parameters:
     start_at:
       name: start_at
@@ -101,13 +96,6 @@ components:
         type: string
         format: date-time
       description: RFC 3339 start of the query window.
-    teamID:
-      name: teamID
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The team identifier (e.g. team_123abc).
     end_at:
       name: end_at
       in: query
@@ -115,12 +103,24 @@ components:
         type: string
         format: date-time
       description: RFC 3339 end of the query window.
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The team identifier (e.g. team_123abc).
     limit:
       name: limit
       in: query
       schema:
         type: integer
       description: Maximum number of results to return per page.
+  responses:
+    RateLimited:
+      description: Rate limit exceeded. Maximum 50 requests in a 5 minute window; blocked for 5 minutes when the quota is exceeded.
+    Forbidden:
+      description: The API key's team role lacks the permission required for this endpoint.
   securitySchemes:
     bearerAuth:
       type: http
