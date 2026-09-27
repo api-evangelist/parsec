@@ -89,13 +89,6 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   parameters:
-    start_at:
-      name: start_at
-      in: query
-      schema:
-        type: string
-        format: date-time
-      description: RFC 3339 start of the query window.
     end_at:
       name: end_at
       in: query
@@ -103,6 +96,19 @@ components:
         type: string
         format: date-time
       description: RFC 3339 end of the query window.
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to return per page.
+    start_at:
+      name: start_at
+      in: query
+      schema:
+        type: string
+        format: date-time
+      description: RFC 3339 start of the query window.
     teamID:
       name: teamID
       in: path
@@ -110,17 +116,11 @@ components:
       schema:
         type: string
       description: The team identifier (e.g. team_123abc).
-    limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-      description: Maximum number of results to return per page.
   responses:
-    RateLimited:
-      description: Rate limit exceeded. Maximum 50 requests in a 5 minute window; blocked for 5 minutes when the quota is exceeded.
     Forbidden:
       description: The API key's team role lacks the permission required for this endpoint.
+    RateLimited:
+      description: Rate limit exceeded. Maximum 50 requests in a 5 minute window; blocked for 5 minutes when the quota is exceeded.
   securitySchemes:
     bearerAuth:
       type: http

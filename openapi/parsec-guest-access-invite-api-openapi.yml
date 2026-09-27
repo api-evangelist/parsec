@@ -106,13 +106,18 @@ components:
     Forbidden:
       description: The API key's team role lacks the permission required for this endpoint.
   parameters:
-    teamID:
-      name: teamID
+    guestAccessInviteID:
+      name: guestAccessInviteID
       in: path
       required: true
       schema:
         type: string
-      description: The team identifier (e.g. team_123abc).
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to return per page.
     offset:
       name: offset
       in: query
@@ -120,18 +125,13 @@ components:
         type: integer
         minimum: 0
       description: Pagination offset.
-    limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-      description: Maximum number of results to return per page.
-    guestAccessInviteID:
-      name: guestAccessInviteID
+    teamID:
+      name: teamID
       in: path
       required: true
       schema:
         type: string
+      description: The team identifier (e.g. team_123abc).
   securitySchemes:
     bearerAuth:
       type: http

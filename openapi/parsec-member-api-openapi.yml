@@ -71,20 +71,6 @@ components:
     Forbidden:
       description: The API key's team role lacks the permission required for this endpoint.
   parameters:
-    teamID:
-      name: teamID
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The team identifier (e.g. team_123abc).
-    offset:
-      name: offset
-      in: query
-      schema:
-        type: integer
-        minimum: 0
-      description: Pagination offset.
     userID:
       name: userID
       in: path
@@ -97,6 +83,20 @@ components:
       schema:
         type: integer
       description: Maximum number of results to return per page.
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+      description: Pagination offset.
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The team identifier (e.g. team_123abc).
   securitySchemes:
     bearerAuth:
       type: http

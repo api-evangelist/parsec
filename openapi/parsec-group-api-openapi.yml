@@ -169,19 +169,18 @@ components:
     Forbidden:
       description: The API key's team role lacks the permission required for this endpoint.
   parameters:
-    teamID:
-      name: teamID
+    permittedGroupID:
+      name: permittedGroupID
       in: path
       required: true
       schema:
         type: string
-      description: The team identifier (e.g. team_123abc).
-    groupID:
-      name: groupID
-      in: path
-      required: true
+    limit:
+      name: limit
+      in: query
       schema:
-        type: string
+        type: integer
+      description: Maximum number of results to return per page.
     offset:
       name: offset
       in: query
@@ -189,18 +188,19 @@ components:
         type: integer
         minimum: 0
       description: Pagination offset.
-    limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-      description: Maximum number of results to return per page.
-    permittedGroupID:
-      name: permittedGroupID
+    groupID:
+      name: groupID
       in: path
       required: true
       schema:
         type: string
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The team identifier (e.g. team_123abc).
   securitySchemes:
     bearerAuth:
       type: http
