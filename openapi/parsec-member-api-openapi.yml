@@ -63,13 +63,20 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  responses:
+    Forbidden:
+      description: The API key's team role lacks the permission required for this endpoint.
+    Unauthorized:
+      description: Missing or invalid API key.
+    NotFound:
+      description: The requested resource was not found.
   parameters:
-    limit:
-      name: limit
-      in: query
+    userID:
+      name: userID
+      in: path
+      required: true
       schema:
-        type: integer
-      description: Maximum number of results to return per page.
+        type: string
     teamID:
       name: teamID
       in: path
@@ -84,19 +91,12 @@ components:
         type: integer
         minimum: 0
       description: Pagination offset.
-    userID:
-      name: userID
-      in: path
-      required: true
+    limit:
+      name: limit
+      in: query
       schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-    Forbidden:
-      description: The API key's team role lacks the permission required for this endpoint.
-    NotFound:
-      description: The requested resource was not found.
+        type: integer
+      description: Maximum number of results to return per page.
   securitySchemes:
     bearerAuth:
       type: http
