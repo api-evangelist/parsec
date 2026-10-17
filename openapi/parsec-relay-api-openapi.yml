@@ -42,12 +42,6 @@ paths:
           description: Relay updated.
 components:
   parameters:
-    relayID:
-      name: relayID
-      in: path
-      required: true
-      schema:
-        type: string
     teamID:
       name: teamID
       in: path
@@ -55,6 +49,12 @@ components:
       schema:
         type: string
       description: The team identifier (e.g. team_123abc).
+    relayID:
+      name: relayID
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

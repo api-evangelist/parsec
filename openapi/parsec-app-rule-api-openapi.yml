@@ -60,19 +60,6 @@ paths:
           description: App rule un-assigned.
 components:
   parameters:
-    appRuleID:
-      name: appRuleID
-      in: path
-      required: true
-      schema:
-        type: string
-    teamID:
-      name: teamID
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The team identifier (e.g. team_123abc).
     offset:
       name: offset
       in: query
@@ -80,12 +67,25 @@ components:
         type: integer
         minimum: 0
       description: Pagination offset.
+    teamID:
+      name: teamID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The team identifier (e.g. team_123abc).
     limit:
       name: limit
       in: query
       schema:
         type: integer
       description: Maximum number of results to return per page.
+    appRuleID:
+      name: appRuleID
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     Forbidden:
       description: The API key's team role lacks the permission required for this endpoint.

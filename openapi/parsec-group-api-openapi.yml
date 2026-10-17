@@ -163,7 +163,25 @@ paths:
         '204':
           description: Permitted group removed.
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Forbidden:
+      description: The API key's team role lacks the permission required for this endpoint.
   parameters:
+    permittedGroupID:
+      name: permittedGroupID
+      in: path
+      required: true
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+      description: Pagination offset.
     groupID:
       name: groupID
       in: path
@@ -183,24 +201,6 @@ components:
       schema:
         type: integer
       description: Maximum number of results to return per page.
-    offset:
-      name: offset
-      in: query
-      schema:
-        type: integer
-        minimum: 0
-      description: Pagination offset.
-    permittedGroupID:
-      name: permittedGroupID
-      in: path
-      required: true
-      schema:
-        type: string
-  responses:
-    Forbidden:
-      description: The API key's team role lacks the permission required for this endpoint.
-    NotFound:
-      description: The requested resource was not found.
   securitySchemes:
     bearerAuth:
       type: http
