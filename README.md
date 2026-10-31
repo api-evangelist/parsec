@@ -64,6 +64,153 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Parsec is a company surfaced as a portfolio company of a16z and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Parsec is a high-performance, low-latency remote desktop and interactive video streaming product, now a Unity company, used to access graphics-intensive and latency-sensitive applications from anywhere across any device. Its peer-to-peer architecture streams in silky-smooth high definition and is used by game studios (EA, Ubisoft, Blizzard, Square Enix), film/TV, animation, broadcast and architecture teams. Parsec for Teams adds organization-wide administration, and the Parsec for Teams API exposes that admin surface — managing members, groups, team machines (computers), time-limited guest access, application rules, relays, and the team audit log — authenticated with an API key presented as an HTTP Bearer token and governed by a granular team permission model.
 
-Backed by: a16z
+**Areas:** Company · Remote Desktop · Cloud Gaming · Streaming · Virtual Desktop · Team Management · Developer Tools · Gaming
+
+## Parsec on APIs.io
+
+Everything profiled for Parsec is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/parsec/](https://apis.io/providers/parsec/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [Parsec App Rule API](https://apis.io/apis/parsec/parsec-app-rule-api/) — The App Rule API from Parsec — 3 operation(s) for app rule.
+- [Parsec Audit Log API](https://apis.io/apis/parsec/parsec-audit-log-api/) — The Audit Log API from Parsec — 2 operation(s) for audit log.
+- [Parsec Group API](https://apis.io/apis/parsec/parsec-group-api/) — The Group API from Parsec — 7 operation(s) for group.
+- [Parsec Guest Access Invite API](https://apis.io/apis/parsec/parsec-guest-access-invite-api/) — The Guest Access Invite API from Parsec — 4 operation(s) for guest access invite.
+- [Parsec Machine API](https://apis.io/apis/parsec/parsec-machine-api/) — The Machine API from Parsec — 4 operation(s) for machine.
+- [Parsec Member API](https://apis.io/apis/parsec/parsec-member-api/) — The Member API from Parsec — 2 operation(s) for member.
+- [Parsec Member Invite API](https://apis.io/apis/parsec/parsec-member-invite-api/) — The Member Invite API from Parsec — 3 operation(s) for member invite.
+- [Parsec Relay API](https://apis.io/apis/parsec/parsec-relay-api/) — The Relay API from Parsec — 2 operation(s) for relay.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [parsec-teams](https://apis.io/servers/parsec/parsec-teams/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Parsec Agentic Access](https://apis.io/agentic-access/parsec/parsec-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Parsec Teams App Rule API](https://apis.io/collections/parsec/open-parsec-app-rule-api/)
+- [Parsec Teams App Rule Audit Log API](https://apis.io/collections/parsec/open-parsec-audit-log-api/)
+- [Parsec Teams App Rule Group API](https://apis.io/collections/parsec/open-parsec-group-api/)
+- [Parsec Teams App Rule Guest Access Invite API](https://apis.io/collections/parsec/open-parsec-guest-access-invite-api/)
+- [Parsec Teams App Rule Machine API](https://apis.io/collections/parsec/open-parsec-machine-api/)
+- [Parsec Teams App Rule Member API](https://apis.io/collections/parsec/open-parsec-member-api/)
+- [Parsec Teams App Rule Member Invite API](https://apis.io/collections/parsec/open-parsec-member-invite-api/)
+- [Parsec Teams App Rule Relay API](https://apis.io/collections/parsec/open-parsec-relay-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Parsec Teams Overlay](https://apis.io/overlays/parsec/parsec-teams-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Parsec Authentication](https://apis.io/security/parsec/parsec-authentication/)
+- [Parsec Domain Security](https://apis.io/security/parsec/parsec-domain-security/)
+- [Parsec Trust Center](https://apis.io/security/parsec/parsec-trust-center/)
+- [Parsec Vulnerability Disclosure](https://apis.io/security/parsec/parsec-vulnerability-disclosure/)
+
+#### Plans and pricing (2)
+
+Published plans, tiers and prices.
+
+- [Parsec Plans Pricing](https://apis.io/plans/parsec/parsec-plans-pricing/)
+- [Parsec Price Estimates](https://apis.io/plans/parsec/parsec-price-estimates/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Parsec Rate Limits](https://apis.io/rate-limits/parsec/parsec-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.parsec.app/)
+- [Documentation](https://parsec.app/docs/teams-api)
+- [API reference](https://parsec.app/docs/teams-api)
+- [Pricing](https://parsec.app/pricing)
+- [Sign up](https://dash.parsec.app/signup)
+- [Support](https://support.parsec.app)
+- [Changelog](https://parsec.app/changelog)
+- [Blog](https://parsec.app/blog)
+- [Security](https://parsec.app/security)
+- [Compliance](https://parsec.app/security)
+- [Trust centre](https://parsec.app/security)
+- [Terms of service](https://parsec.app/terms)
+- [Privacy policy](https://unity.com/legal/privacy-policy)
+- [GitHub](https://github.com/parsec-cloud)
+- [Status](https://status.parsec.app)
+
+## API Evangelist rating
+
+**Kin Score 60.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 65.8 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 92.1 |
+
+**Agent readiness 24.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/parsec/](https://apis.io/providers/parsec/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Parsec: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/parsec/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
